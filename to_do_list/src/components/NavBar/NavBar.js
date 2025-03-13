@@ -1,5 +1,5 @@
 import React from "react";
-import styles from './navBar.module.scss';
+import styles from './NavBar.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';  // Import głównego komponentu
 import { faTasks } from '@fortawesome/free-solid-svg-icons';  // Import konkretnej ikony "tasks"
 import Container from "../../Container/Container";
