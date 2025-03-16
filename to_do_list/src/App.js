@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Routes, Route } from 'react-router-dom';
 import Container from "./Container/Container";
 import NavBar from "./components/NavBar/NavBar";
 import Home from "./components/Home/Home";
@@ -13,9 +13,11 @@ const App = () => {
     <main>
       <NavBar/>
       <Container>
-        <Home/>
-        <Favorite/>
-        <About />
+        <Routes>
+          <Route path="/" element={<Home/>} />
+          <Route path="/about" element ={<Favorite/>} />
+          <Route path="/favorite" element={<About />} />
+        </Routes>
       </Container>
     </main>
   );
