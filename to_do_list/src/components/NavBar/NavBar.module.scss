@@ -1,29 +1,46 @@
 @import '../../styles/settings.scss';
 
 .navbar {
-    background-color: dark($color-dark, 3%);
+    
+    background-color: darken($color-dark, 3%);
     padding: 15px 0;
+    width: 100%;
+  }
+
+  .navContainer {
+    display: flex;
+    justify-content: space-between;  // Ustawienie elementów na przeciwległych stronach
+    align-items: center;
   }
   
   .iconLink {
+    display: flex;
     font-size: 24px;
     color: white;
   }
+
+.icon {
+    margin-right: 90vh;
+}
   
   .navList {
     display: flex;
+    justify-content: flex-end;
     list-style: none;
     gap: 20px;
+   
+  }
+    
   
     li a {
       text-decoration: none;
       color: white;
       font-size: 18px;
     }
-  }
   
-  .navbar nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+  
+//   .navbar nav {
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+//   }

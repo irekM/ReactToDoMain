@@ -1,0 +1,9 @@
+@import '../../styles/settings.scss';
+
+.pageTitle {
+    display: flex;
+    align-items: center;
+    background-color: darken($color-dark, 3%);
+    padding: 15px 0;
+    width: 100%;
+}
