@@ -19,6 +19,9 @@ const NavBar = () => {
             <Link to="/" className={styles.iconLink}>
                 <FontAwesomeIcon icon={faTasks} className={styles.icon} />
             </Link>
+            {/* <a href="/" className={styles.iconLink}>
+                <FontAwesomeIcon icon={faTasks} className={styles.icon} />
+            </a> */}
 
             <li><NavLink className={({ isActive }) => isActive ? styles.linkActive : undefined}
                 to="/">Home</NavLink>
