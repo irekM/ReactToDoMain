@@ -9,6 +9,8 @@ const SearchForm = () => {
     const dispatch = useDispatch();
     const searchString = useSelector(state=>state.searchString)
     const [searchTerm, setSearchTerm] = useState(searchString);
+      
+
 
     useEffect (() => {
         setSearchTerm(searchString);
