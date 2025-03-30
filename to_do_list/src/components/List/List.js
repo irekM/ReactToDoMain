@@ -15,6 +15,7 @@ const List = () => {
 
     const listData = useSelector(state => getListById(state, listId));
 
+    
     return (
         <div className={styles.list}>
             <header className={styles.header}>
