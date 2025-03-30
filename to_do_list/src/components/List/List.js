@@ -32,7 +32,7 @@ const List = () => {
                     />
                 ))}
             </section>
-            <ColumnForm/>
+            <ColumnForm lsitId={listId} />
         </div>
     );
 };
