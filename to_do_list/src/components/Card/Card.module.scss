@@ -11,3 +11,19 @@
     justify-content: space-between;
     font-weight: bold;
 }
+
+.favoriteButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    
+    i {
+      font-size: 16px; // Zmniejsz ikonę, np. do 16px
+      color: rgb(69, 156, 236); // Możesz dostosować kolor, jeśli potrzebujesz
+    }
+  
+    &.isFavorite i {
+      color: rgb(109, 6, 78); // Kolor dla ulubionych kart
+    }
+  }
