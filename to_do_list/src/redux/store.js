@@ -1,7 +1,11 @@
 import { createStore, combineReducers } from 'redux';
 import initialState from './initialState';
-import shortid from 'shortid';
+// import shortid from 'shortid';
 import strContains from '../utils/strContains';
+import listReducer from './listsRedux';
+import columnsReducer from './columnsReducer';
+import cardsReducer from './cardsReducer';
+import searchStringReducer from './searchStringReducer';
 
 //selectors
 export const getFilteredCards = ({ cards, searchString }, columnId) => cards
@@ -23,46 +27,6 @@ export const toggleCardFavorite = payload =>  ({ type: 'TOGGLE_CARD_FAVORITE', p
 export const addList = payload => ({type: 'ADD_List', payload});
 
 //zmiana reducera na subreducery
-const listReducer = (statePart = [], action) => {
-  switch(action.type){
-    case 'ADD_LIST':
-      return [...statePart, {...action.payload, id: shortid()}];
-    default:
-      return statePart;
-  }
-}
-
-const columnsReducer = (statePart = [], action) => {
-  switch(action.type){
-    case 'ADD_COLUMN':
-      return [...statePart, {...action.payload, id: shortid()}];
-      default:
-      return statePart;
-  }
-}
-
-const cardsReducer = (statePart = [], action) => {
-  switch(action.type) {
-    case 'ADD_CARD':
-      return [...statePart, { ...action.payload, id: shortid()
-  }];
-
-    case 'TOGGLE_CARD_FAVORITE':
-      return statePart.map(card => (card.id === action.payload) ?
-  { ...card, isFavorite: !card.isFavorite } : card);
-    default:
-    return statePart;
-  }
-  }
-
-  const searchStringReducer = (statePart = '', action) => {
-    switch(action.type) {
-      case 'UPDATE_SEARCHSTRING':
-      return action.payload
-    default:
-      return statePart;
-  }
-  }
 
   const subreducers = {
     lists: listReducer,
