@@ -20,51 +20,110 @@ export const addColumn = payload => ({ type: 'ADD_COLUMN', payload });
 export const addCard = payload => ({ type: 'ADD_CARD', payload });
 export const updateSearchString = payload => ({ type: 'UPDATE_SEARCHSTRIG', payload});
 export const toggleCardFavorite = payload =>  ({ type: 'TOGGLE_CARD_FAVORITE', payload });
+export const addList = payload => ({type: 'ADD_List', payload});
+
+//zmiana reducera na subreducery
+const listReducer = (statePart = [], action) => {
+  switch(action.type){
+    case 'ADD_LIST':
+      return [...statePart, {...action.payload, id: shortid()}];
+    default:
+      return statePart;
+  }
+}
+
+const columnsReducer = (statePart = [], action) => {
+  switch(action.type){
+    case 'ADD_COLUMN':
+      return [...statePart, {...action.payload, id: shortid()}];
+      default:
+      return statePart;
+  }
+}
+
+const cardsReducer = (statePart = [], action) => {
+  switch(action.type) {
+    case 'ADD_CARD':
+      return [...statePart, { ...action.payload, id: shortid()
+  }];
+
+    case 'TOGGLE_CARD_FAVORITE':
+      return statePart.map(card => (card.id === action.payload) ?
+  { ...card, isFavorite: !card.isFavorite } : card);
+    default:
+    return statePart;
+  }
+  }
+
+  const searchStringReducer = (statePart = '', action) => {
+    switch(action.type) {
+      case 'UPDATE_SEARCHSTRING':
+      return action.payload
+    default:
+      return statePart;
+  }
+  }
+
+  const reducer = (state, action) => {
+    const newState = {
+      lists:listReducer(state.lists, action),
+      columns: columnsReducer(state.columns, action),
+      cards: cardsReducer(state.cards, action),
+      searchString: searchStringReducer(state.searchString, action)
+    };
+    return newState;
+  };
 
   //[payload zamiast newColumn]
-const reducer = (state, action) => {
-  switch(action.type) {
-    case 'ADD_COLUMN':
-      return { 
-        ...state, 
-        columns: [...state.columns, { 
-        ...action.payload, 
-        id: shortid()
-      }]
-    };
+// const reducer = (state, action) => {
+//   switch(action.type) {
+//     case 'ADD_COLUMN':
+//       return { 
+//         ...state, 
+//         columns: [...state.columns, { 
+//         ...action.payload, 
+//         id: shortid()
+//       }]
+//     };
 
-    case 'ADD_CARD':
-      return{
-        ...state,
-        columns: state.columns.map(column => {
-          if(column.id === action.payload.columnId){
-            return {
-              ...column,
-              cards: [...column.cards, { id: shortid(), title: action.payload.title}]
-            };
-          }
-          return column;
-        })
-      };
+//     case 'ADD_CARD':
+//       return{
+//         ...state,
+//         columns: state.columns.map(column => {
+//           if(column.id === action.payload.columnId){
+//             return {
+//               ...column,
+//               cards: [...column.cards, { id: shortid(), title: action.payload.title}]
+//             };
+//           }
+//           return column;
+//         })
+//       };
 
-    case 'UPDATE_SEARCHSTRING':
-      return {
-        ...state,
-        searchString: action.payload
-      };
+//       case 'ADD_LIST':
+//         return { ...state, lists: [...state.lists, {
+//           ...action.payload, id: shortid() }]};
+
+//       case 'TOGGLE_CARD_FAVORITE':
+//       return {
+//         ...state,
+//         cards: state.cards.map(card =>
+//           card.id === action.payload ? { ...card, isFavorite: !card.isFavorite } : card
+//         )
+//       };
+
+//     case 'UPDATE_SEARCHSTRING':
+//       return {
+//         ...state,
+//         searchString: action.payload
+//       };
     
-    case 'TOGGLE_CARD_FAVORITE':
-      return {
-        ...state,
-        cards: state.cards.map(card =>
-          card.id === action.payload ? { ...card, isFavorite: !card.isFavorite } : card
-        )
-      };
+    
 
-    default:
-      return state;
-  }
-};
+//     default:
+//       return state;
+//   }
+// };
 
 // const initialState = {
 //   columns: [],
