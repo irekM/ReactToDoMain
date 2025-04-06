@@ -4,11 +4,11 @@ export const getSearchString = state => state.searchString;
 
 //actions
 const createActionName = actionName => `app/CARD/${actionName}`;
-const UPDATE_SEARCHSTRIG = createActionName('UPDATE_SEARCHSTRIG');
+const UPDATE_SEARCHSTRING = createActionName('UPDATE_SEARCHSTRING');
 
 
 //action creator
-export const updateSearchString = payload => ({ type: UPDATE_SEARCHSTRIG, payload});
+export const updateSearchString = payload => ({ type: UPDATE_SEARCHSTRING, payload});
 
 
 const searchStringReducer = (statePart = '', action) => {
